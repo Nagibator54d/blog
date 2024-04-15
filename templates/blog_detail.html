@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+    <h1 style="text-align: center; font-size: 40px; color: rgb(27, 189, 89);">{{ blog.title }}</h1>
+    <img src="{{ blog.image.url }}" style="width:500px; height: 500px; margin-left: 50px; border-radius: 10px 10px 10px 10px;">
+    <p style="text-align: center; font-size: 30px;">{{ blog.desc }}</p>
+    <p style=" font-size: 20px;">{{ blog.created }}</p>
+
+  
+
+{% endblock %}
