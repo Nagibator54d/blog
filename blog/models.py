@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 class Category(models.Model):
-    title=models.CharField(max_length=50)
+    title=models.CharField(max_length=100, db_index=True)
 
     def __str__(self):
         return self.title
@@ -17,12 +17,18 @@ class Category(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=100)
     slug=models.SlugField()
+    category=models.ForeignKey(Category,on_delete=models.CASCADE)
+    price=models.DecimalField(decimal_places=2,max_digits=10)
     desc = models.TextField(max_length=100)
-    image = models.ImageField(upload_to='images/')
+    available=models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField()
-    category=models.ForeignKey(Category,on_delete=models.CASCADE)
-    
+    image = models.ImageField(upload_to='images/')
+   
+    class Meta:
+        ordering=('name',)
+        verbose_name ='Товары'
+        verbose_name_plural ='Товары'
 
     def __str__(self):
         return self.title
@@ -30,6 +36,4 @@ class Blog(models.Model):
     def get_absolute_url(self):
         return reverse('blog_detail',args=[self.id,self.slug])
     
-    class Meta:
-        verbose_name ='Блог'
-        verbose_name_plural ='Блог'
+

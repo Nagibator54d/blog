@@ -4,6 +4,10 @@
 {% block content %}
     {% if user.is_authenticated %}
         {% for blog in blogs %}
+        <div style="margin-top: 40px; display: flex;justify-content: center;
+        margin-bottom: 40px;
+        gap: 30px;
+        flex-wrap: wrap; ">
         <a href="{{ blog.get_absolute_url }}"><img  style="width: 300px; height: 300px; margin-left: 50px; border-radius: 10px 10px 10px 10px;" src="{{ blog.image.url }} " alt="" srcset="">
         </a>
         
@@ -15,3 +19,4 @@
 
 {% endblock %}
     
+ 
